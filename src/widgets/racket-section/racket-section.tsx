@@ -10,6 +10,7 @@ import {rackets} from "@/src/shared/api/mock";
 import {useExpandList} from "@/src/widgets/racket-section/lib/hook";
 import {RacketCard} from "@/src/entities/racket-card";
 import {JSX, useMemo} from "react";
+import {ROUTES} from "@/src/shared/config";
 
 export const RacketSection = ()=>{
     const DEFAULT_CARD = 3;
@@ -20,9 +21,10 @@ export const RacketSection = ()=>{
             key={racket.id}
             url={racket.imageUrl}
             nameBrand={racket.brand.name}
-            href={`/rackets/${racket.id}`}
+            href={`${ROUTES.RACKETS}/${racket.id}`}
         />
-    )),[visibleRackets])
+    )),[visibleRackets]);
+
 
     return (
         <SContainer>
