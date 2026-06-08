@@ -1,6 +1,3 @@
-'use client'
-
-import {useParams} from "next/navigation";
 import {
     SBrandName,
     SContentWrapper,
@@ -8,27 +5,26 @@ import {
     SModel, SPrice,
     SWrapperBrand, SWrapperPrice
 } from "@/src/widgets/racket-catalog/racket-catalog.styles";
-import {racketsById} from "@/src/widgets/racket-catalog/lib/rackets-by-id";
 
-export const RacketCatalog = ()=>{
-   const params =  useParams();
-    const racketCatalog = racketsById.get(+params.id) ;
+import {TRacket} from "@/src/shared/api/rackets.types";
 
-    if (!racketCatalog) {
+export const RacketCatalog = ({racket}:{racket: TRacket })=>{
+
+
+    if (!racket) {
         return <div>Ракетка не найдена</div>;
     }
-
 
       return(
           <SContentWrapper>
              <SWrapperBrand>
-                <SBrandName>{racketCatalog?.brand.name}</SBrandName>
-                <SModel>{racketCatalog?.model}</SModel>
-                <SDescription>{racketCatalog?.description}</SDescription>
+                <SBrandName>{racket?.brand.name}</SBrandName>
+                <SModel>{racket?.model}</SModel>
+                <SDescription>{racket?.description}</SDescription>
              </SWrapperBrand>
-             <SImgContainer src={`${racketCatalog?.imageUrl}`}  alt={racketCatalog?.model ?? ''}/>
+             <SImgContainer src={`${racket?.imageUrl}`}  alt={racket?.model ?? ''}/>
               <SWrapperPrice>
-                  <SPrice> € {racketCatalog?.price}</SPrice>
+                  <SPrice> € {racket?.price}</SPrice>
               </SWrapperPrice>
 
           </SContentWrapper>

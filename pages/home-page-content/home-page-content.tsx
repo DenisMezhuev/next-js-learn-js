@@ -1,3 +1,5 @@
-import {RacketSection} from "../../src/widgets/racket-section";
+import {RacketSection} from "@/src/widgets/racket-section";
 
-export const HomePageContent = () => (<RacketSection/>)
+const HomePageContent = () => <RacketSection/>
+
+export default HomePageContent;

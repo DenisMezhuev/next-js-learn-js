@@ -1,1 +1,1 @@
-export * from './racket-page'
+export { default } from './racket-page'
