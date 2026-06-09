@@ -9,22 +9,12 @@ import {
 import {rackets} from "@/src/shared/api/mock";
 import {useExpandList} from "@/src/widgets/racket-section/lib/hook";
 import {RacketCard} from "@/src/entities/racket-card";
-import {JSX, useMemo} from "react";
+import {JSX} from "react";
 import {ROUTES} from "@/src/shared/config";
 
 export const RacketSection = ()=>{
     const DEFAULT_CARD = 3;
     const { expand, isExpanded,visibleRackets,collapse}  = useExpandList(rackets, DEFAULT_CARD);
-
-    const renderElement =  useMemo(()=>visibleRackets.map((racket):  JSX.Element => (
-        <RacketCard
-            key={racket.id}
-            url={racket.imageUrl}
-            nameBrand={racket.brand.name}
-            href={`${ROUTES.RACKETS}/${racket.id}`}
-        />
-    )),[visibleRackets]);
-
 
     return (
         <SContainer>
@@ -35,7 +25,14 @@ export const RacketSection = ()=>{
                 </SAllProduct>
             </SWrapper>
             <SContent>
-                {renderElement}
+                {visibleRackets.map((racket):  JSX.Element => (
+                    <RacketCard
+                        key={racket.id}
+                        url={racket.imageUrl}
+                        nameBrand={racket.brand.name}
+                        href={`${ROUTES.RACKETS}/${racket.id}`}
+                    />
+                ))}
             </SContent>
         </SContainer>
     );

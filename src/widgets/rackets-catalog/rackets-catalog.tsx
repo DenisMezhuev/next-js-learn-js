@@ -1,6 +1,5 @@
 'use client'
 
-import { useMemo } from 'react';
 import { RacketCard } from "@/src/entities/racket-card";
 import { rackets } from "@/src/shared/api/mock";
 import {useBrandFilter} from "@/src/features/brand-filte/lib/hook";
@@ -10,35 +9,31 @@ import {ROUTES} from "@/src/shared/config";
 
 export const RacketsCatalog = () => {
     const {
-        handleBrandSelect,
+        setSelectedBrand,
         filteredRackets,
         brandFilters,
         selectedBrand
     } = useBrandFilter(rackets);
 
-    const racketCards = useMemo(() =>
-            filteredRackets?.map(racket => (
-                <RacketCard
-                    key={racket.id}
-                    url={racket.imageUrl}
-                    nameBrand={racket.brand.name}
-                    href={`${ROUTES.RACKETS}/${racket.id}`}
-                />
-            )),
-        [filteredRackets]
-    );
 
     return (
         <SContainer>
             <BrandFilter
                 brandFilters={brandFilters}
                 selectedBrand={selectedBrand}
-                onBrandSelect={handleBrandSelect}
+                onBrandSelect={setSelectedBrand}
             />
             <SWrapperContent>
                 <SLabelContent>Ракетки</SLabelContent>
                 <SContainerContent>
-                    {racketCards}
+                    {filteredRackets?.map(racket => (
+                        <RacketCard
+                            key={racket.id}
+                            url={racket.imageUrl}
+                            nameBrand={racket.brand.name}
+                            href={`${ROUTES.RACKETS}/${racket.id}`}
+                        />
+                    ))}
                 </SContainerContent>
             </SWrapperContent>
         </SContainer>
