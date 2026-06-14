@@ -1,5 +1,5 @@
 import {racketsById} from "@/src/widgets/racket-catalog/lib/rackets-by-id";
-import RacketPage from "@/pages/racket-page";
+import {RacketCatalog} from "@/src/widgets/racket-catalog";
 
 
 export async function generateStaticParams() {
@@ -19,5 +19,5 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 
 
 
-    return <RacketPage racket={racket} />;
+    return <RacketCatalog racket={racket} />;
 }

@@ -1,3 +1,3 @@
-import HomePageContent from "@/pages/home-page-content";
+import {RacketSection} from "@/src/widgets/racket-section";
 
-export default  <HomePageContent/>
+export default  <RacketSection/>
