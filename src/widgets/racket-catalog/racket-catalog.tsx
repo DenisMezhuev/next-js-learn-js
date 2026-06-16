@@ -5,17 +5,9 @@ import {
     SModel, SPrice,
     SWrapperBrand, SWrapperPrice
 } from "@/src/widgets/racket-catalog/racket-catalog.styles";
-
 import {TRacket} from "@/src/shared/api/rackets.types";
 
-export const RacketCatalog = ({racket}:{racket: TRacket })=>{
-
-
-    if (!racket) {
-        return <div>Ракетка не найдена</div>;
-    }
-
-      return(
+export const RacketCatalog = ({racket}:{racket: TRacket })=>
           <SContentWrapper>
              <SWrapperBrand>
                 <SBrandName>{racket?.brand.name}</SBrandName>
@@ -26,7 +18,4 @@ export const RacketCatalog = ({racket}:{racket: TRacket })=>{
               <SWrapperPrice>
                   <SPrice> € {racket?.price}</SPrice>
               </SWrapperPrice>
-
           </SContentWrapper>
-      )
-}

@@ -6,6 +6,7 @@ export const SContainer = styled.nav`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 140px;
+    width: fit-content;
     height: 20px;
+    gap: 10px;
 `

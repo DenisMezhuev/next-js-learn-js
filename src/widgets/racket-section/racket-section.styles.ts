@@ -26,12 +26,6 @@ export const SProductName = styled.div`
     color: black;
 `
 
-export const SAllProduct = styled.div`
-    font-size: 16px;
-    color: blue;
-    cursor: pointer;
-`
-
 export const SContent = styled.div`
     display: flex;
     flex-direction: row;

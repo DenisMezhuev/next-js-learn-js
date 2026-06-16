@@ -1,3 +1,3 @@
-import {RacketsCatalog} from "@/src/widgets/rackets-catalog/rackets-catalog";
+import RacketsCatalog from "@/src/widgets/rackets-catalog/rackets-catalog";
 
-export default  <RacketsCatalog/>
+export default RacketsCatalog
