@@ -10,7 +10,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   const {data, isError} = await getRacketById(Number(id));
 
     if (isError || !data) {
-        notFound();
+      return   notFound();
     }
 
     return <RacketCatalog racket={data.product} />;
