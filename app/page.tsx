@@ -1,3 +1,3 @@
-import {RacketSection} from "@/src/widgets/racket-section";
+import RacketSection from "@/src/widgets/racket-section/racket-section";
 
-export default RacketSection
+export default  RacketSection

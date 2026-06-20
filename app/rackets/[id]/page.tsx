@@ -1,23 +1,17 @@
-import {racketsById} from "@/src/widgets/racket-catalog/lib/rackets-by-id";
 import {RacketCatalog} from "@/src/widgets/racket-catalog";
+import {getRacketById} from "@/src/shared/api/get-racket-by-id";
+import {notFound} from "next/navigation";
 
-
-export async function generateStaticParams() {
-
-    return Array.from(racketsById.keys()).map((id) => ({
-        id: String(id),
-    }));
-}
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
 
-    const { id } = await params;
+  const { id } = await params;
 
-    const racket = racketsById.get(Number(id));
+  const {data, isError} = await getRacketById(Number(id));
 
-    if (!racket) return <div>Ракетка не найдена</div>;
+    if (isError || !data) {
+      return   notFound();
+    }
 
-
-
-    return <RacketCatalog racket={racket} />;
+    return <RacketCatalog racket={data.product} />;
 }

@@ -1,0 +1,1 @@
+export { default } from './rackets-catalog-top';

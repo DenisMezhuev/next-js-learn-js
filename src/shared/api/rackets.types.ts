@@ -20,3 +20,13 @@ export type TRacket ={
 
 
 export type TRacketList = TRacket[];
+
+export type TRacketProduct = {
+    product: TRacket;
+};
+
+
+export type TResponse<Entity> = Promise<{
+    isError: boolean;
+    data?: Entity;
+}>;
