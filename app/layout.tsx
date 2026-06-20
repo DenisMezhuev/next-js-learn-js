@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {BaseLayout} from "@/src/widgets/base-layout";
+import NextTopLoader from "nextjs-toploader";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,6 +17,7 @@ export default function RootLayout({
       lang="en"
     >
       <body>
+      <NextTopLoader color="#007bff" showSpinner={false} />
       <BaseLayout>
         {children}
       </BaseLayout>
