@@ -9,6 +9,8 @@ export const getRacketById = async (
     if (!response.ok) {
         return {
             isError: true,
+            status: response.status,
+            statusText: response.statusText,
             data: undefined,
         };
     }
@@ -18,5 +20,7 @@ export const getRacketById = async (
     return {
         isError: false,
         data: rackets,
+        status: response.status,
+        statusText: response.statusText,
     };
 };

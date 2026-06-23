@@ -28,5 +28,7 @@ export type TRacketProduct = {
 
 export type TResponse<Entity> = Promise<{
     isError: boolean;
+    status: number;
+    statusText: string;
     data?: Entity;
 }>;

@@ -11,6 +11,8 @@ export const getRackets = async (
     if (!response.ok) {
         return {
             isError: true,
+            status: response.status,
+            statusText: response.statusText,
             data: []
         };
     }
@@ -19,6 +21,8 @@ export const getRackets = async (
 
     return {
         isError: false,
+        status: response.status,
+        statusText: response.statusText,
         data: rackets,
     };
 };
