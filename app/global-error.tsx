@@ -1,3 +1,5 @@
+"use client"
+
 import {ErrorPage} from "@/src/widgets/error";
 
 

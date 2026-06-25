@@ -16,6 +16,9 @@ export type TRacket ={
     description: string;
     brandId: number;
     brand: TBrand;
+    userData?: {
+        isFavorite: boolean;
+    };
 }
 
 
@@ -32,3 +35,9 @@ export type TResponse<Entity> = Promise<{
     statusText: string;
     data?: Entity;
 }>;
+
+
+export type TUser = {
+    login: string;
+    isAdmin: boolean;
+}

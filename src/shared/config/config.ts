@@ -8,4 +8,6 @@ export const ROUTES = {
     HOME: '/',
     RACKETS: '/rackets',
     RACKETS_TOP_10: `/rackets/${TOP_10}`,
+    LOGIN: '/login',
+    SIGNUP: '/signup',
 } as const;
