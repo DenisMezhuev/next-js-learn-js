@@ -1,3 +1,4 @@
-import LoginPage from "@/src/widgets/login";
+import {LoginPage} from "@/src/widgets/login";
+
 
 export default LoginPage

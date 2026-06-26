@@ -1,9 +1,10 @@
-"use client";
+'use client';
 
-import { useActionState, useEffect } from "react";
-import loginAction from "./login-action";
+import { useActionState, useEffect } from 'react';
+import loginAction from './login-action';
+import {AuthForm} from "@/src/shared/ui/auth-form";
 
-export default function LoginPage() {
+export const LoginPage = () => {
     const [state, formAction, isPending] = useActionState(loginAction, {});
 
     useEffect(() => {
@@ -13,33 +14,36 @@ export default function LoginPage() {
     }, [state.redirectUrl]);
 
     return (
-        <form className="p-2" action={formAction}>
-            <div>
-                <label htmlFor="login">Логин</label>
-                <input
-                    type="text"
-                    id="login"
-                    name="login"
-                    defaultValue={state.previousValue?.login}
-                />
-            </div>
-
-            <div>
-                <label htmlFor="password">Пароль</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    defaultValue={state.previousValue?.password}
-                />
-            </div>
-
-            {state.error && <p className="text-red-900">Ошибка</p>}
-            <div>
-                <button type="submit" disabled={isPending}>
-                    Войти
-                </button>
-            </div>
-        </form>
+        <AuthForm
+            title="Вход"
+            fields={[
+                {
+                    name: 'login',
+                    label: 'Логин',
+                    type: 'text',
+                    placeholder: 'Введите логин',
+                    defaultValue: state.previousValue?.login,
+                    required: true,
+                },
+                {
+                    name: 'password',
+                    label: 'Пароль',
+                    type: 'password',
+                    placeholder: 'Введите пароль',
+                    defaultValue: state.previousValue?.password,
+                    required: true,
+                },
+            ]}
+            submitText="Войти"
+            submitPendingText="Вход..."
+            isPending={isPending}
+            error={state.error ? 'Неверный логин или пароль' : undefined}
+            formAction={formAction}
+            link={{
+                text: 'Нет аккаунта?',
+                href: '/signup',
+                label: 'Зарегистрироваться',
+            }}
+        />
     );
-}
+};

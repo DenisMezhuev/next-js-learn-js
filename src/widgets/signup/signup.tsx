@@ -1,52 +1,56 @@
-'use client'
+'use client';
 
 import { useActionState, useEffect } from 'react';
-
 import { signupAction } from './signup-action';
+import {AuthForm} from "@/src/shared/ui/auth-form";
 
-export default function SignupPage() {
+export const SignupPage = () => {
     const [state, formAction, isPending] = useActionState(signupAction, {});
 
-    const { error, redirectTo } = state;
-
     useEffect(() => {
-        if (redirectTo) {
-            document.location.assign(redirectTo);
+        if (state.redirectTo) {
+            document.location.assign(state.redirectTo);
         }
-    }, [redirectTo]);
+    }, [state.redirectTo]);
 
     return (
-        <form action={formAction} className="mx-auto flex max-w-sm flex-col gap-4">
-            <h1 className="text-xl font-medium text-black">Регистрация</h1>
-
-            <label className="flex flex-col gap-1">
-                <span>Логин</span>
-                <input
-                    name="login"
-                    type="text"
-                    required
-                    className="rounded-lg border border-gray-300 px-3 py-2 text-black"
-                />
-            </label>
-
-            <label className="flex flex-col gap-1">
-                <span>Пароль</span>
-                <input
-                    name="password"
-                    type="password"
-                    required
-                    className="rounded-lg border border-gray-300 px-3 py-2 text-black"
-                />
-            </label>
-
-            {error && <div className="text-red-500">{error}</div>}
-
-            <button
-                disabled={isPending}
-                className="rounded-lg bg-accent px-4 py-2 text-white disabled:opacity-50"
-            >
-                {isPending ? 'Регистрируем…' : 'Зарегистрироваться'}
-            </button>
-        </form>
+        <AuthForm
+            title="Регистрация"
+            fields={[
+                {
+                    name: 'login',
+                    label: 'Логин',
+                    type: 'text',
+                    placeholder: 'Придумайте логин',
+                    defaultValue: state.previousValue?.login,
+                    required: true,
+                },
+                {
+                    name: 'password',
+                    label: 'Пароль',
+                    type: 'password',
+                    placeholder: 'Придумайте пароль',
+                    defaultValue: state.previousValue?.password,
+                    required: true,
+                },
+                {
+                    name: 'confirmPassword',
+                    label: 'Подтверждение пароля',
+                    type: 'password',
+                    placeholder: 'Повторите пароль',
+                    required: true,
+                },
+            ]}
+            submitText="Зарегистрироваться"
+            submitPendingText="Регистрация..."
+            isPending={isPending}
+            error={state.error}
+            formAction={formAction}
+            link={{
+                text: 'Уже есть аккаунт?',
+                href: '/login',
+                label: 'Войти',
+            }}
+        />
     );
-}
+};

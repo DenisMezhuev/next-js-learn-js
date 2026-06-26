@@ -1,3 +1,4 @@
-import  SignupPage from '@/src/widgets/signup'
+import {SignupPage} from "@/src/widgets/signup";
+
 
 export default SignupPage
